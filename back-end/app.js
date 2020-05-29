@@ -6,6 +6,26 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
+const Sequelize = require("sequelize");
+
+const db = new Sequelize(
+  "todolistbafo",
+  "todolistbafo",
+  "stalingrad4", {
+    host: "localhost",
+    dialect: "postgres"
+  }
+);
+
+db.authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch(err => {
+    console.error("Unable to connect to the database:", err);
+  });
+
+
 // Log requests to the console.
 app.use(logger("dev"));
 
